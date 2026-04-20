@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    int n, rem;
+
+    printf("Enter number: ");
+    if (scanf("%d", &n) != 1) return 1;
+
+    printf("Digits in reverse order: ");
+    
+    if (n == 0) printf("0");
+    if (n < 0) n = -n;
+
+    while (n > 0) {
+        rem = n % 10;
+        printf("%d ", rem);
+        n = n / 10;
+    }
+
+    printf("\n");
+    return 0;
+}
