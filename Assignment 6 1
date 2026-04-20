@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+long fact_iter(int n) {
+    long res = 1;
+    for (int i = 2; i <= n; i++) {
+        res *= i;
+    }
+    return res;
+}
+
+int main() {
+    int num;
+    printf("Enter number: ");
+    scanf("%d", &num);
+    if (num < 0) {
+        printf("Invalid input.\n");
+    } else {
+        printf("Factorial : %ld\n", fact_iter(num));
+    }
+    return 0;
+}
