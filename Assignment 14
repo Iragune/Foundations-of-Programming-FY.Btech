@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main() {
+    long long n;
+    int dec = 0, base = 1, rem;
+
+    printf("Enter a binary number: ");
+    if (scanf("%lld", &n) != 1) return 1;
+
+    long long temp = n; 
+    while (n > 0) {
+        rem = n % 10;
+        dec = dec + (rem * base);
+        n = n / 10;
+        base = base * 2;
+    }
+
+    printf("Decimal equivalent = %d\n", dec);
+
+    return 0;
+}
