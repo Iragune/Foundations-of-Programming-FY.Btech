@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+int get_len(char s[]) {
+    int i = 0;
+    while (s[i] != '\0') i++;
+    return i;
+}
+
+void get_rev(char s[], char r[]) {
+    int len = get_len(s);
+    for (int i = 0; i < len; i++) r[i] = s[len - 1 - i];
+    r[len] = '\0';
+}
+
+int is_equal(char s1[], char s2[]) {
+    int i = 0;
+    while (s1[i] == s2[i]) {
+        if (s1[i] == '\0') return 1;
+        i++;
+    }
+    return 0;
+}
+
+int has_sub(char s[], char sub[]) {
+    int i, j;
+    for (i = 0; s[i] != '\0'; i++) {
+        for (j = 0; sub[j] != '\0'; j++) {
+            if (s[i + j] != sub[j]) break;
+        }
+        if (sub[j] == '\0') return 1;
+    }
+    return 0;
+}
+
+int main() {
+    char s1[100], s2[100], sub[100], rev[100];
+    
+    printf("Enter main string: ");
+    scanf("%s", s1);
+    
+    printf("Enter string for equality check: ");
+    scanf("%s", s2);
+    
+    printf("Enter string to search (substring): ");
+    scanf("%s", sub);
+
+    printf("\n--- Results ---\n");
+    printf("Length of main string: %d\n", get_len(s1));
+
+    get_rev(s1, rev);
+    printf("Reversed: %s\n", rev);
+
+    if (is_equal(s1, rev)) printf("Status: Palindrome\n");
+    else printf("Status: Not a Palindrome\n");
+
+    if (is_equal(s1, s2)) printf("Equality: Match found\n");
+    else printf("Equality: No match\n");
+
+    if (has_sub(s1, sub)) printf("Substring: '%s' found in '%s'\n", sub, s1);
+    else printf("Substring: Not found\n");
+
+    return 0;
+}
