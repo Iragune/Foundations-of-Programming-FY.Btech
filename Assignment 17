@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    float x, sum, term;
+
+    printf("Enter value of x (in radians): ");
+    if (scanf("%f", &x) != 1) return 1;
+    printf("Enter number of terms: ");
+    scanf("%d", &n);
+
+    sum = x;
+    term = x;
+
+    for (i = 1; i < n; i++) {
+        term = -term * x * x / ((2 * i) * (2 * i + 1));
+        sum += term;
+    }
+
+    printf("Sum of sine series = %f\n", sum);
+
+    return 0;
+}
