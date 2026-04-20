@@ -4,7 +4,7 @@ int main() {
     int bp;
     float hra, ta, gs, pt, ns;
     printf("Enter Basic Pay: ");
-    scanf("%d\n",&bp);
+    scanf("%d",&bp);
     hra=0.1*bp;
     ta=0.05*bp;
     gs=bp+hra+ta;
