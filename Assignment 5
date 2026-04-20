@@ -1,0 +1,66 @@
+#include <stdio.h>
+
+void mat_add(int r, int c, int a[10][10], int b[10][10]) {
+    printf("\nAddition:\n");
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++)
+            printf("%d ", a[i][j] + b[i][j]);
+        printf("\n");
+    }
+}
+
+void get_saddle(int r, int c, int m[10][10]) {
+    int f = 0;
+    for (int i = 0; i < r; i++) {
+        int min = m[i][0], c_idx = 0;
+        for (int j = 1; j < c; j++) {
+            if (m[i][j] < min) {
+                min = m[i][j];
+                c_idx = j;
+            }
+        }
+        int k;
+        for (k = 0; k < r; k++)
+            if (m[k][c_idx] > min) break;
+        if (k == r) {
+            printf("\nSaddle point: %d", min);
+            f = 1;
+        }
+    }
+    if (!f) printf("\nNo saddle point.");
+}
+
+void is_magic(int n, int m[10][10]) {
+    int d1 = 0, d2 = 0;
+    for (int i = 0; i < n; i++) {
+        d1 += m[i][i];
+        d2 += m[i][n - 1 - i];
+    }
+    if (d1 != d2) { printf("\nNot magic."); return; }
+    for (int i = 0; i < n; i++) {
+        int rs = 0, cs = 0;
+        for (int j = 0; j < n; j++) {
+            rs += m[i][j];
+            cs += m[j][i];
+        }
+        if (rs != d1 || cs != d1) { printf("\nNot magic."); return; }
+    }
+    printf("\nMagic square. Sum: %d", d1);
+}
+
+int main() {
+    int r, c, m1[10][10], m2[10][10];
+    printf("Rows/Cols: ");
+    scanf("%d %d", &r, &c);
+    printf("Mat A:\n");
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++) scanf("%d", &m1[i][j]);
+    printf("Mat B:\n");
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++) scanf("%d", &m2[i][j]);
+
+    mat_add(r, c, m1, m2);
+    get_saddle(r, c, m1);
+    if (r == c) is_magic(r, m1);
+    return 0;
+}
