@@ -46,7 +46,7 @@ Question easyBonus[BonusQ] = {
 {"Secure way to store passwords?", {{"Password manager"},{"Notebook"},{"Text file"},{"Sharing"}}, 1},
 {"2FA requires:", {{"Two verifications"},{"Two passwords"},{"Two emails"},{"Two phones"}}, 1},
 {"Example of cloud storage?", {{"Google Drive"},{"CPU"},{"Monitor"},{"Router"}}, 1},
-{"Executable file extension?", {{".exe"},{".jpg"},{".mp3"},{".txt"}}, 1},
+{"Executable file extension?", {{ ".exe"},{ ".jpg"},{ ".mp3"},{ ".txt"}}, 1},
 {"CAPTCHA prevents:", {{"Bots"},{"Humans"},{"Viruses"},{"Updates"}}, 1},
 {"Safer on public WiFi?", {{"Using VPN"},{"Banking directly"},{"Sharing passwords"},{"Turning off firewall"}}, 1},
 {"Software updates fix:", {{"Security flaws"},{"Battery"},{"Screen"},{"Keyboard"}}, 1},
@@ -228,11 +228,11 @@ int main()
 
             printf("Score: %d / %d | Lives: %d\n",score,m,lives);
         }
-
+        if(lives==0) break;
         printf("\nDo you want to attempt Bonus Round? (y/n): ");
         scanf(" %c",&bonus);
 
-        if(bonus=='y'||bonus=='Y')
+        if((bonus=='y'||bonus=='Y') && lives > 0)
         {
             int usedBonus[BonusQ]={0};
             int bonusCount=0;
